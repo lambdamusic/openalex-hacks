@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FoamTree Test | Dimensions | 20240723-165651</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta property="og:image" content="//get.carrotsearch.com/foamtree/latest/demos/assets/img/main-thumbnail.jpg"/>
+
+    <meta charset="utf-8" />
+    <link href="static/foamtree/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="static/foamtree/assets/css/common.css" rel="stylesheet" />
+
+    <!-- Include the default style for the interaction hints and guide -->
+    <link href="static/foamtree/assets/css/carrotsearch.foamtree.util.hints.css" rel="stylesheet"/>
+  </head>
+
+  <body>
+    <div id="container">
+      <div id="visualization"></div>
+    </div>
+
+    <div id="side">
+      <h2>FoamTree Test | Dimensions</h2>
+
+      <p>
+        A prototype implementation of <a href="https://carrotsearch.com/foamtree/">Carrot Search Foam Tree</a> visualization using <a href="https://docs.dimensions.ai/bigquery/data-sources.html">Dimensions data</a>.
+      </p>
+
+      <p>
+        To show the contextual hints, hover over the groups. To see the guide, click
+        the info button or press <span class="key">?</span>.
+      </p>
+
+      
+      
+        
+        
+          <h4>The <a href="https://docs.dimensions.ai/dsl/data-sources.html">DSL</a> query:</h4>
+        
+        
+        <pre>
+          search publications return research_orgs limit 50
+        </pre>
+
+      
+        
+
+
+
+    </div>
+
+    <!-- Include FoamTree implementation. -->
+    <script src="static/foamtree/carrotsearch.foamtree.js"></script>
+
+    <!-- Include Hammer.js for mobile interactions. Not required for desktop-only apps. -->
+    <script src="static/foamtree/assets/js/hammer.min.js"></script>
+    <!-- Hints -->
+    <script src="static/foamtree/carrotsearch.foamtree.util.hints.js"></script>
+    <script src="data.js"></script>
+
+
+    <!-- A simple static JSON-P loader, optional -->
+    <!-- <script src="assets/js/carrotsearch.jsonp.js"></script> -->
+
+    <script>
+      window.addEventListener("load", function () {
+        // Initialize FoamTree
+        var foamtree = new CarrotSearchFoamTree({
+          id: "visualization",
+          pixelRatio: window.devicePixelRatio || 1
+        });
+
+        // Initialized interaction hints and guide. The required
+        // HTML will be automatically inserted into the visualization container.
+        CarrotSearchFoamTree.hints(foamtree);
+
+        // Resize FoamTree on orientation change
+        window.addEventListener("orientationchange", foamtree.resize);
+
+        // Resize on window size changes
+        window.addEventListener("resize", (function() {
+          var timeout;
+          return function() {
+            window.clearTimeout(timeout);
+            timeout = window.setTimeout(foamtree.resize, 300);
+          }
+        })());
+
+        // var dataObject =   
+
+//;
+
+        foamtree.set("dataObject", dataObject);
+
+      });
+
+    </script>
+  </body>
+</html>
