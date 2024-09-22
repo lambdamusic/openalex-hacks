@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FoamTree Test | Dimensions | 20220224-172240</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <meta property="og:image" content="//get.carrotsearch.com/foamtree/latest/demos/assets/img/main-thumbnail.jpg"/>
+
+    <meta charset="utf-8" />
+    <link href="static/foamtree/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="static/foamtree/assets/css/common.css" rel="stylesheet" />
+
+    <!-- Include the default style for the interaction hints and guide -->
+    <link href="static/foamtree/assets/css/carrotsearch.foamtree.util.hints.css" rel="stylesheet"/>
+  </head>
+
+  <body>
+    <div id="container">
+      <div id="visualization"></div>
+    </div>
+
+    <div id="side">
+      <h2>FoamTree Test | Dimensions</h2>
+
+      <p>
+        A prototype implementation of <a href="https://carrotsearch.com/foamtree/">Carrot Search Foam Tree</a> visualization using <a href="https://docs.dimensions.ai/bigquery/data-sources.html">Dimensions data</a>.
+      </p>
+
+      <p>
+        To show the contextual hints, hover over the groups. To see the guide, click
+        the info button or press <span class="key">?</span>.
+      </p>
+
+      <h4>What's the query?</h4>
+
+      <pre>SELECT
+publications.type as LABEL1,
+research_orgs_grid.address.country  AS LABEL2,
+COUNT(DISTINCT publications.id ) AS MEASURE
+FROM `dimensions-ai.data_analytics.publications`
+    AS publications
+LEFT JOIN UNNEST(publications.research_orgs) as publications__research_orgs
+INNER JOIN `dimensions-ai.data_analytics.grid`
+    AS research_orgs_grid ON publications__research_orgs = research_orgs_grid.id
+WHERE (publications.year ) = 2010
+GROUP BY
+    1, 2
+HAVING MEASURE &gt; 1000
+ORDER BY
+    3 DESC
+    
+LIMIT 500
+</pre>
+
+    </div>
+
+    <!-- Include FoamTree implementation. -->
+    <script src="static/foamtree/carrotsearch.foamtree.js"></script>
+
+    <!-- Include Hammer.js for mobile interactions. Not required for desktop-only apps. -->
+    <script src="static/foamtree/assets/js/hammer.min.js"></script>
+    <!-- Hints -->
+    <script src="static/foamtree/carrotsearch.foamtree.util.hints.js"></script>
+
+
+    <!-- A simple static JSON-P loader, optional -->
+    <!-- <script src="assets/js/carrotsearch.jsonp.js"></script> -->
+
+    <script>
+      window.addEventListener("load", function () {
+        // Initialize FoamTree
+        var foamtree = new CarrotSearchFoamTree({
+          id: "visualization",
+          pixelRatio: window.devicePixelRatio || 1
+        });
+
+        // Initialized interaction hints and guide. The required
+        // HTML will be automatically inserted into the visualization container.
+        CarrotSearchFoamTree.hints(foamtree);
+
+        // Resize FoamTree on orientation change
+        window.addEventListener("orientationchange", foamtree.resize);
+
+        // Resize on window size changes
+        window.addEventListener("resize", (function() {
+          var timeout;
+          return function() {
+            window.clearTimeout(timeout);
+            timeout = window.setTimeout(foamtree.resize, 300);
+          }
+        })());
+
+        var dataObject = {
+ "groups": [
+  {
+   "groups": [
+    {
+     "label": "United States",
+     "weight": 467098
+    },
+    {
+     "label": "China",
+     "weight": 160869
+    },
+    {
+     "label": "Japan",
+     "weight": 160769
+    },
+    {
+     "label": "United Kingdom",
+     "weight": 135577
+    },
+    {
+     "label": "Germany",
+     "weight": 114269
+    },
+    {
+     "label": "France",
+     "weight": 74330
+    },
+    {
+     "label": "Canada",
+     "weight": 69548
+    },
+    {
+     "label": "Italy",
+     "weight": 61923
+    },
+    {
+     "label": "Spain",
+     "weight": 57072
+    },
+    {
+     "label": "India",
+     "weight": 50503
+    },
+    {
+     "label": "Australia",
+     "weight": 50135
+    },
+    {
+     "label": "South Korea",
+     "weight": 47021
+    },
+    {
+     "label": "Brazil",
+     "weight": 45281
+    },
+    {
+     "label": "Netherlands",
+     "weight": 38109
+    },
+    {
+     "label": "Russia",
+     "weight": 34619
+    },
+    {
+     "label": "Taiwan",
+     "weight": 26154
+    },
+    {
+     "label": "Switzerland",
+     "weight": 25816
+    },
+    {
+     "label": "Sweden",
+     "weight": 23465
+    },
+    {
+     "label": "Belgium",
+     "weight": 20443
+    },
+    {
+     "label": "Turkey",
+     "weight": 19573
+    },
+    {
+     "label": "Poland",
+     "weight": 18994
+    },
+    {
+     "label": "Iran",
+     "weight": 16841
+    },
+    {
+     "label": "Denmark",
+     "weight": 14516
+    },
+    {
+     "label": "Austria",
+     "weight": 13990
+    },
+    {
+     "label": "Israel",
+     "weight": 13734
+    },
+    {
+     "label": "Greece",
+     "weight": 12070
+    },
+    {
+     "label": "Finland",
+     "weight": 11096
+    },
+    {
+     "label": "Norway",
+     "weight": 10864
+    },
+    {
+     "label": "Portugal",
+     "weight": 10753
+    },
+    {
+     "label": "Singapore",
+     "weight": 9812
+    },
+    {
+     "label": "Czechia",
+     "weight": 9333
+    },
+    {
+     "label": "New Zealand",
+     "weight": 9060
+    },
+    {
+     "label": "Mexico",
+     "weight": 8802
+    },
+    {
+     "label": "Ireland",
+     "weight": 8601
+    },
+    {
+     "label": "South Africa",
+     "weight": 8390
+    },
+    {
+     "label": "Egypt",
+     "weight": 8226
+    },
+    {
+     "label": "Argentina",
+     "weight": 7284
+    },
+    {
+     "label": "Hungary",
+     "weight": 6486
+    },
+    {
+     "label": "Malaysia",
+     "weight": 6259
+    },
+    {
+     "label": "Thailand",
+     "weight": 6110
+    },
+    {
+     "label": "Chile",
+     "weight": 5460
+    },
+    {
+     "label": "Ukraine",
+     "weight": 4781
+    },
+    {
+     "label": "Saudi Arabia",
+     "weight": 4072
+    },
+    {
+     "label": "Romania",
+     "weight": 4069
+    },
+    {
+     "label": "Pakistan",
+     "weight": 3667
+    },
+    {
+     "label": "Serbia",
+     "weight": 3264
+    },
+    {
+     "label": "Slovakia",
+     "weight": 3036
+    },
+    {
+     "label": "Colombia",
+     "weight": 2930
+    },
+    {
+     "label": "Slovenia",
+     "weight": 2871
+    },
+    {
+     "label": "Nigeria",
+     "weight": 2866
+    },
+    {
+     "label": "Croatia",
+     "weight": 2727
+    },
+    {
+     "label": "Tunisia",
+     "weight": 2603
+    },
+    {
+     "label": "Indonesia",
+     "weight": 2323
+    },
+    {
+     "label": "Bangladesh",
+     "weight": 2132
+    },
+    {
+     "label": "Bulgaria",
+     "weight": 2030
+    },
+    {
+     "label": "Lithuania",
+     "weight": 1651
+    },
+    {
+     "label": "Morocco",
+     "weight": 1613
+    },
+    {
+     "label": "Estonia",
+     "weight": 1316
+    },
+    {
+     "label": "Jordan",
+     "weight": 1175
+    },
+    {
+     "label": "Algeria",
+     "weight": 1171
+    },
+    {
+     "label": "Belarus",
+     "weight": 1157
+    },
+    {
+     "label": "Kenya",
+     "weight": 1134
+    },
+    {
+     "label": "United Arab Emirates",
+     "weight": 1133
+    }
+   ],
+   "label": "article",
+   "weight": 1952976
+  },
+  {
+   "groups": [
+    {
+     "label": "China",
+     "weight": 74541
+    },
+    {
+     "label": "United States",
+     "weight": 47347
+    },
+    {
+     "label": "Japan",
+     "weight": 11876
+    },
+    {
+     "label": "Germany",
+     "weight": 10259
+    },
+    {
+     "label": "United Kingdom",
+     "weight": 8584
+    },
+    {
+     "label": "Canada",
+     "weight": 7710
+    },
+    {
+     "label": "France",
+     "weight": 6941
+    },
+    {
+     "label": "Taiwan",
+     "weight": 6127
+    },
+    {
+     "label": "Italy",
+     "weight": 5921
+    },
+    {
+     "label": "South Korea",
+     "weight": 5777
+    },
+    {
+     "label": "India",
+     "weight": 5649
+    },
+    {
+     "label": "Spain",
+     "weight": 4204
+    },
+    {
+     "label": "Australia",
+     "weight": 4177
+    },
+    {
+     "label": "Iran",
+     "weight": 3709
+    },
+    {
+     "label": "Malaysia",
+     "weight": 3021
+    },
+    {
+     "label": "Netherlands",
+     "weight": 2771
+    },
+    {
+     "label": "Brazil",
+     "weight": 2632
+    },
+    {
+     "label": "Singapore",
+     "weight": 2510
+    },
+    {
+     "label": "Switzerland",
+     "weight": 1985
+    },
+    {
+     "label": "Sweden",
+     "weight": 1981
+    },
+    {
+     "label": "Russia",
+     "weight": 1725
+    },
+    {
+     "label": "Belgium",
+     "weight": 1583
+    },
+    {
+     "label": "Finland",
+     "weight": 1526
+    },
+    {
+     "label": "Turkey",
+     "weight": 1488
+    },
+    {
+     "label": "Portugal",
+     "weight": 1450
+    },
+    {
+     "label": "Greece",
+     "weight": 1396
+    },
+    {
+     "label": "Austria",
+     "weight": 1389
+    },
+    {
+     "label": "Romania",
+     "weight": 1327
+    },
+    {
+     "label": "Poland",
+     "weight": 1102
+    },
+    {
+     "label": "Israel",
+     "weight": 1010
+    }
+   ],
+   "label": "proceeding",
+   "weight": 231718
+  },
+  {
+   "groups": [
+    {
+     "label": "United States",
+     "weight": 40870
+    },
+    {
+     "label": "Germany",
+     "weight": 17232
+    },
+    {
+     "label": "United Kingdom",
+     "weight": 11777
+    },
+    {
+     "label": "India",
+     "weight": 9378
+    },
+    {
+     "label": "Japan",
+     "weight": 7016
+    },
+    {
+     "label": "France",
+     "weight": 5624
+    },
+    {
+     "label": "China",
+     "weight": 5400
+    },
+    {
+     "label": "Canada",
+     "weight": 5362
+    },
+    {
+     "label": "Italy",
+     "weight": 4654
+    },
+    {
+     "label": "Netherlands",
+     "weight": 3723
+    },
+    {
+     "label": "Australia",
+     "weight": 3665
+    },
+    {
+     "label": "Spain",
+     "weight": 3557
+    },
+    {
+     "label": "Switzerland",
+     "weight": 3399
+    },
+    {
+     "label": "Austria",
+     "weight": 1664
+    },
+    {
+     "label": "Poland",
+     "weight": 1586
+    },
+    {
+     "label": "Belgium",
+     "weight": 1456
+    },
+    {
+     "label": "Sweden",
+     "weight": 1441
+    },
+    {
+     "label": "Ukraine",
+     "weight": 1388
+    },
+    {
+     "label": "Brazil",
+     "weight": 1260
+    },
+    {
+     "label": "South Korea",
+     "weight": 1237
+    },
+    {
+     "label": "Israel",
+     "weight": 1078
+    },
+    {
+     "label": "Greece",
+     "weight": 1014
+    }
+   ],
+   "label": "chapter",
+   "weight": 133781
+  },
+  {
+   "groups": [
+    {
+     "label": "United States",
+     "weight": 8332
+    },
+    {
+     "label": "United Kingdom",
+     "weight": 2029
+    },
+    {
+     "label": "Germany",
+     "weight": 1650
+    },
+    {
+     "label": "Italy",
+     "weight": 1089
+    },
+    {
+     "label": "Canada",
+     "weight": 1037
+    }
+   ],
+   "label": "preprint",
+   "weight": 14137
+  }
+ ]
+};
+
+        foamtree.set("dataObject", dataObject);
+
+      });
+
+    </script>
+  </body>
+</html>
