@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FoamTree Test | Dimensions | 20220224-172240</title>
+    <title>FoamTree</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
     <meta property="og:image" content="//get.carrotsearch.com/foamtree/latest/demos/assets/img/main-thumbnail.jpg"/>
 
@@ -11,6 +11,7 @@
 
     <!-- Include the default style for the interaction hints and guide -->
     <link href="static/foamtree/assets/css/carrotsearch.foamtree.util.hints.css" rel="stylesheet"/>
+
   </head>
 
   <body>
@@ -19,52 +20,35 @@
     </div>
 
     <div id="side">
-      <h2>FoamTree Test | Dimensions</h2>
+
+      <h2>FoamTree</h2>
 
       <p>
-        A prototype implementation of <a href="https://carrotsearch.com/foamtree/">Carrot Search Foam Tree</a> visualization using <a href="https://docs.dimensions.ai/bigquery/data-sources.html">Dimensions data</a>.
+        Demo for foamtree
       </p>
 
       <p>
-        To show the contextual hints, hover over the groups. To see the guide, click
-        the info button or press <span class="key">?</span>.
+        Double click a group to open it and zoom.
+        Press <kbd>Esc</kbd> to <a href="#zoom-out">zoom out</a>.
       </p>
-
-      <h4>What's the query?</h4>
-
-      <pre>SELECT
-publications.type as LABEL1,
-research_orgs_grid.address.country  AS LABEL2,
-COUNT(DISTINCT publications.id ) AS MEASURE
-FROM `dimensions-ai.data_analytics.publications`
-    AS publications
-LEFT JOIN UNNEST(publications.research_orgs) as publications__research_orgs
-INNER JOIN `dimensions-ai.data_analytics.grid`
-    AS research_orgs_grid ON publications__research_orgs = research_orgs_grid.id
-WHERE (publications.year ) = 2010
-GROUP BY
-    1, 2
-HAVING MEASURE &gt; 1000
-ORDER BY
-    3 DESC
-    
-LIMIT 500
-</pre>
-
-    </div>
 
     <!-- Include FoamTree implementation. -->
     <script src="static/foamtree/carrotsearch.foamtree.js"></script>
+
+    <!-- Include the tree model utilities -->
+    <script src="static/foamtree/carrotsearch.foamtree.util.treemodel.js"></script>
 
     <!-- Include Hammer.js for mobile interactions. Not required for desktop-only apps. -->
     <script src="static/foamtree/assets/js/hammer.min.js"></script>
     <!-- Hints -->
     <script src="static/foamtree/carrotsearch.foamtree.util.hints.js"></script>
 
-
-    <!-- A simple static JSON-P loader, optional -->
-    <!-- <script src="assets/js/carrotsearch.jsonp.js"></script> -->
-
+    <!-- Utilities, optional -->
+    <script src="static/foamtree/assets/js/carrotsearch.jsonp.js"></script>
+    <script src="static/foamtree/assets/js/carrotsearch.template.js"></script>
+    <script src="static/foamtree/assets/js/jquery-2.0.3.min.js"></script>
+    <script src="static/foamtree/assets/js/typeahead.js"></script>
+        
     <script>
       window.addEventListener("load", function () {
         // Initialize FoamTree
