@@ -1,8 +1,8 @@
 # OpenAlex hacks
 
-Collection of notebooks and code snippets aimed at learning about / exploring the [OpenAlex](https://openalex.org/) datasets.
+Notebooks and code snippets aimed at learning about / exploring the [OpenAlex](https://openalex.org/) datasets.
 
-Some of these analyses result in visualizations that are available on [this website](https://lambdamusic.github.io/openalex-hacks).
+See also [this website](https://lambdamusic.github.io/openalex-hacks) for example visualizations resulting from the code. 
 
 
 ## Topics and Keywords
@@ -38,12 +38,14 @@ TODO This notebook turns it into a SKOS model, which is a standard for taxonomic
 
 ## Development
 
-* jupyter notebooks contain all data extraction logic
+* `src` folder includes jupyter notebooks with all data extraction logic
 * `build` folder is used to generate outputs
 * put results into `docs` for publishing via github pages ie on <https://lambdamusic.github.io/openalex-hacks/>
 
 
-## Disclaimer
+### Disclaimer
+
+This code is mainly a hack and can contain errors. 
 
 I am not affiliated to the OpenAlex project. 
 
