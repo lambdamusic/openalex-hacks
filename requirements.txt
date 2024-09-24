@@ -4,3 +4,4 @@ jupyterlab
 pandas
 plotly
 pyalex
+ontospy
