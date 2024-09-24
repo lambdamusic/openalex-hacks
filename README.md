@@ -24,9 +24,21 @@ See the [official data documentation](https://help.openalex.org/hc/en-us/section
 
 ### Exploring the topics tree
 
-This [notebook](/src/2024-09-topics-explore.ipynb) pulls the topics dataset and turns it into a nice [FoamTree visualization](https://lambdamusic.github.io/openalex-hacks/foamtree/).
+The [notebook 2024-09-topics-explore.ipynb](/src/2024-09-topics-explore.ipynb) pulls the topics dataset and turns it into a nice [FoamTree visualization](https://lambdamusic.github.io/openalex-hacks/foamtree/).
 
-TODO This notebook turns it into a SKOS model, which is a standard for taxonomical data that can be easily ingested and processed by other applications 
+### Rendering the data as SKOS
+
+[SKOS](https://www.w3.org/2004/02/skos/intro) provides a standard way to represent knowledge organization systems using the Resource Description Framework (RDF). Encoding this information in RDF allows it to process it using various tools developed for Knowledge Graph applications. 
+
+This [notebook 2024-09-skos.ipynb](/src/2024-09-skos.ipynb) loads the topics dataset and generates a SKOS ontology: [openalex-topics-rdf.ttl](/src/data/openalex-topics-rdf.ttl). 
+
+Two sample visualizations of the ontology have been generated (using [Ontospy](https://lambdamusic.github.io/Ontospy/)): 
+
+* Multi page HTML documentation (one page per entity)
+* Single page HTML documentation
+* D3 bubble chart
+
+
 
 ### Credits 
 
