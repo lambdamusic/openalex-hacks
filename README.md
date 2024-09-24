@@ -38,7 +38,7 @@ Two sample visualizations of the ontology have been generated (using [Ontospy](h
 * Single page HTML documentation
 * D3 bubble chart
 
-
+Command is `ontospy gendocs src/data/openalex-topics-rdf.ttl --preflabel label --theme united`. 
 
 ### Credits 
 
