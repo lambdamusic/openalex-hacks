@@ -101,6 +101,12 @@
 
     <div id="side">
 
+      <section id="current" style="visibility: hidden; background: #f3f0f0;">
+        <p>Current selection:</p>
+        <div id="nodeinfo" style="font-size: 120%;">...</div>
+        <hr>
+      </section>
+
       <h2>OpenAlex Topics</h2>
       
       <p>
@@ -166,6 +172,13 @@
     
 
     <script>
+
+        // helper
+      function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      }
+
+
       window.addEventListener("load", function () {
         // We'll need to track the last group the user zoomed to.
         var lastZoomedTo = undefined;
@@ -256,6 +269,23 @@
             this.zoom(toZoom);
             lastZoomedTo = toZoom;
           },
+
+
+          // show info on click
+          onGroupSelectionChanged: function (info) {
+            window.console.log("selected", info);
+            var div = document.getElementById('nodeinfo');
+            if (info.groups.length > 0) {
+              var _id = info.groups[0].id;
+              var _desc = capitalizeFirstLetter(info.groups[0].desc);
+              var _label = info.groups[0].label;
+
+              div.innerHTML = `<b style="background: yellow;">${_label}</b><br /><a href="${_id}" target="_blank">${_id} &#10138;</a><p style="color: gray; font-size:13px; margin-top: 5px;">${_desc}</p>`;
+              var div_outer = document.getElementById('current');
+              div_outer.style.visibility='visible';
+            }
+          },
+
 
           // If group's child diagram could not be computed due to insufficient
           // floating point precision, we'll append [+] to its label. The actual
