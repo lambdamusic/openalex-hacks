@@ -1,13 +1,12 @@
 # OpenAlex hacks
 
-Notebooks and code snippets aimed at learning about / exploring the [OpenAlex](https://openalex.org/) datasets.
+Notebooks and code snippets aimed at learning about / exploring the OpenAlex datasets.
 
-See also [this website](https://lambdamusic.github.io/openalex-hacks) for example visualizations resulting from the code. 
-
+First exploration at the moment focuses on Topics & Keywords. See also [this page](https://lambdamusic.github.io/openalex-hacks) for visualizations and other resources.
 
 ## Topics and Keywords
 
-The topics classification in OpenAlex consists of various thousand categories organised into a 4-level hierarchy. 
+The topics classification in [OpenAlex](https://openalex.org/) consists of various thousand categories organised into a 4-level hierarchy. 
 
 The gist of it is:
 
@@ -45,7 +44,13 @@ Command is `ontospy gendocs src/data/openalex-topics-rdf.ttl --preflabel label -
 * OpenAlex https://docs.openalex.org/
 * Python API https://github.com/J535D165/pyalex 
 * Foam Tree https://get.carrotsearch.com/foamtree/latest/demos/
+* Ontospy  https://lambdamusic.github.io/Ontospy/
 
+
+## See also 
+
+* [FoamTree visualization and SKOS ontology](https://lambdamusic.github.io/openalex-hacks) homepage
+* [Blog post: Unpacking OpenAlex topics classification](https://www.michelepasin.org/blog/2024/09/27/open-alex-topics/index.html)
 
 
 ## Development
@@ -57,7 +62,7 @@ Command is `ontospy gendocs src/data/openalex-topics-rdf.ttl --preflabel label -
 
 ### Disclaimer
 
-This code is mainly a hack and can contain errors. 
+This project is mainly a hack and can contain errors. 
 
 I am not affiliated to the OpenAlex project. 
 
