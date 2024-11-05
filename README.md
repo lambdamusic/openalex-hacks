@@ -2,9 +2,11 @@
 
 Notebooks and code snippets aimed at learning about / exploring the OpenAlex datasets.
 
-First exploration at the moment focuses on Topics & Keywords. See also [this page](https://lambdamusic.github.io/openalex-hacks) for visualizations and other resources.
+First exploration at the moment focuses on [exploring Topics & Keywords](https://lambdamusic.github.io/openalex-hacks). 
 
 ## Topics and Keywords
+
+### Background
 
 The topics classification in [OpenAlex](https://openalex.org/) consists of various thousand categories organised into a 4-level hierarchy. 
 
@@ -19,13 +21,18 @@ The gist of it is:
 
 > Our team put together a new implementation of keywords based on our Topics. There are currently over 26,000 keywords and we expect to add more as time goes on. [...] With our new topics system that was developed in coordination with CWTS, we came out with a list of 10 keywords for each topic. In order to assign keywords to works, we took the topics assigned to that work (at most 3 topics), pulled the keywords associated with those topics (at most 30 keywords, for now) and then determined the similarity of the keyword to the title/abstract using embeddings (and the BGE M3-Embedding model).
 
-See the [official data documentation](https://help.openalex.org/hc/en-us/sections/24734432836887-Data) for more, and in particular also worth looking into the paper  [OpenAlex: End-to-End Process for Topic Classification](https://docs.google.com/document/d/1bDopkhuGieQ4F8gGNj7sEc8WSE8mvLZS/edit#heading=h.5w2tb5fcg77r)
+For more details, see 
 
-### Exploring the topics tree
+- the [official data documentation](https://help.openalex.org/hc/en-us/sections/24734432836887-Data) 
+- the white paper  [OpenAlex: End-to-End Process for Topic Classification](https://docs.google.com/document/d/1bDopkhuGieQ4F8gGNj7sEc8WSE8mvLZS/edit#heading=h.5w2tb5fcg77r)
 
-The [notebook 2024-09-topics-explore.ipynb](/src/2024-09-topics-explore.ipynb) pulls the topics dataset and turns it into a nice [FoamTree visualization](https://lambdamusic.github.io/openalex-hacks/foamtree/).
+### FoamTree visualization
 
-### Rendering the data as SKOS
+The [notebook 2024-09-topics-explore.ipynb](/src/2024-09-topics-explore.ipynb) pulls the topics dataset and turns it into a [FoamTree visualization](https://lambdamusic.github.io/openalex-hacks/foamtree/).
+
+![foam-tree-sample.jpg](src/foam-tree-sample.jpg)
+
+### SKOS data model
 
 [SKOS](https://www.w3.org/2004/02/skos/intro) provides a standard way to represent knowledge organization systems using the Resource Description Framework (RDF). Encoding this information in RDF allows it to process it using various tools developed for Knowledge Graph applications. 
 
@@ -33,9 +40,9 @@ This [notebook 2024-09-skos.ipynb](/src/2024-09-skos.ipynb) loads the topics dat
 
 Two sample visualizations of the ontology have been generated (using [Ontospy](https://lambdamusic.github.io/Ontospy/)): 
 
-* Multi page HTML documentation (one page per entity)
-* Single page HTML documentation
-* D3 bubble chart
+* Single page HTML documentation  - [link](https://lambdamusic.github.io/openalex-hacks/html-single-page/)
+* Multi page HTML documentation - [link](https://lambdamusic.github.io/openalex-hacks/html-multi-page/)
+* D3 bubble chart - [link](https://lambdamusic.github.io/openalex-hacks/d3-bubble-chart/)
 
 Command is `ontospy gendocs src/data/openalex-topics-rdf.ttl --preflabel label --theme united`. 
 
@@ -49,7 +56,6 @@ Command is `ontospy gendocs src/data/openalex-topics-rdf.ttl --preflabel label -
 
 ## See also 
 
-* [FoamTree visualization and SKOS ontology](https://lambdamusic.github.io/openalex-hacks) homepage
 * [Blog post: Unpacking OpenAlex topics classification](https://www.michelepasin.org/blog/2024/09/27/open-alex-topics/index.html)
 
 
