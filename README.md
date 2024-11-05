@@ -30,7 +30,7 @@ For more details, see
 
 The [notebook 2024-09-topics-explore.ipynb](/src/2024-09-topics-explore.ipynb) pulls the topics dataset and turns it into a [FoamTree visualization](https://lambdamusic.github.io/openalex-hacks/foamtree/).
 
-![foam-tree-sample.jpg](src/foam-tree-sample.jpg)
+![foam-tree-sample.jpg](src/img/foam-tree-sample.jpg)
 
 ### SKOS data model
 
